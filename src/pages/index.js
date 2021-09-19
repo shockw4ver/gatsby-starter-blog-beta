@@ -1,4 +1,5 @@
 import * as React from "react"
+import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import styled, { createGlobalStyle } from 'styled-components'
@@ -6,6 +7,7 @@ import { useMediaQuery } from '../hooks/useMediaQuery'
 import { mediaQueryDivider } from '../utils/device'
 
 import Image_HomeBackground from '../images/home-background.jpg'
+import Seo from "../components/seo"
 
 const HomeStyle = createGlobalStyle`
   html,
@@ -127,7 +129,7 @@ const Nav = styled.div`
 
 const directions = ['up', 'left', 'down', 'right']
 
-const Home = ({ data, location }) => {
+const Home = ({ data }) => {
   const navs = data.markdownRemark?.frontmatter?.navs || []
 
   const clientWidth = useMediaQuery()
@@ -135,6 +137,7 @@ const Home = ({ data, location }) => {
 
   return (
     <>
+      <Seo title="Home" />
       <HomeStyle />
       <Layout>
         <Background src={Image_HomeBackground} />

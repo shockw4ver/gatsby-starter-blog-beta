@@ -1,14 +1,14 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `It's Youngchaos`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Zhang Yongchao`,
+      summary: `Learning.Thinking.Creating`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    description: `未经审视的生活是不值得过的`,
+    siteUrl: `https://youngchaos.art`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `Asambojur`,
     },
   },
   plugins: [
