@@ -13,7 +13,10 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-image`,
+    'gatsby-plugin-transition-link',
     `gatsby-plugin-styled-components`,
+    // `gatsby-theme-blog`,
+    // `gatsby-theme-blog-darkmode`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

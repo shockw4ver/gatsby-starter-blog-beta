@@ -1,5 +1,6 @@
 import * as React from "react"
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import styled, { createGlobalStyle } from 'styled-components'
 import { useMediaQuery } from '../hooks/useMediaQuery'
 import { mediaQueryDivider } from '../utils/device'
@@ -16,8 +17,8 @@ const HomeStyle = createGlobalStyle`
 
 const Layout = styled.div`
   position: relative;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   overflow: hidden;
 `
 
@@ -124,6 +125,8 @@ const Nav = styled.div`
   }
 `
 
+const directions = ['up', 'left', 'down', 'right']
+
 const Home = ({ data, location }) => {
   const navs = data.markdownRemark?.frontmatter?.navs || []
 
@@ -138,8 +141,15 @@ const Home = ({ data, location }) => {
         <Main>
           <Title>Young{maybeMobile ? '\n' : ''}chaos</Title>
           <Nav>
-            {navs.map(item => (
-              <Link key={item.name} to={item.link}><span>{ item.name }</span></Link>
+            {navs.map((item, index) => (
+              <AniLink
+                key={item.name}
+                swipe
+                direction={directions[index % 4]}
+                to={item.link}
+              >
+                <span>{ item.name }</span>
+              </AniLink>
             ))}
           </Nav>
         </Main>
