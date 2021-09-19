@@ -106,6 +106,12 @@ exports.createSchemaCustomization = ({ actions }) => {
       title: String
       description: String
       date: Date @dateformat
+      navs: [NavItem]
+    }
+
+    type NavItem {
+      name: String
+      link: String
     }
 
     type Fields {

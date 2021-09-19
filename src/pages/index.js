@@ -1,87 +1,166 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { Link, graphql } from 'gatsby'
+import styled, { createGlobalStyle } from 'styled-components'
+import { useMediaQuery } from '../hooks/useMediaQuery'
+import { mediaQueryDivider } from '../utils/device'
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Image_HomeBackground from '../images/home-background.jpg'
 
-const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+const HomeStyle = createGlobalStyle`
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+`
 
-  if (posts.length === 0) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title="All posts" />
-        <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </Layout>
-    )
+const Layout = styled.div`
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+`
+
+const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url(${props => props.src});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+`
+
+const Main = styled.div`
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 20%;
+
+  @media only screen and (max-width: ${mediaQueryDivider.tablet}px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
   }
 
-  return (
-    <Layout location={location} title={siteTitle}>
-      <Seo title="All posts" />
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
+  @media only screen and (max-width: ${mediaQueryDivider.mobileL}px) {
+    flex-direction: column;
+    justify-content: center;
+  }
+`
 
-          return (
-            <li key={post.fields.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
-    </Layout>
+const Title = styled.h1`
+  color: #dfdfdf;
+  opacity: .7;
+  font-size: 70px;
+  text-align: right;
+  margin-bottom: 20px;
+  cursor: none;
+  user-select: none;
+  transition: all 300ms;
+
+  @media only screen and (max-width: ${mediaQueryDivider.mobileL}px) {
+    text-align: center;
+  }
+`
+
+const Nav = styled.div`
+  display: flex;
+  width: 80%;
+  justify-content: flex-end;
+
+  @media only screen and (max-width: ${mediaQueryDivider.tablet}px) {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  span {
+    position: relative;
+    display: inline-block;
+    height: 60px;
+    margin-left: 30px;
+    padding: 15px 5px;
+    color: #fff;
+    opacity: .7;
+    font-size: 30px;
+    font-family: var(--font-heading);
+    line-height: 30px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    @media only screen and (max-width: ${mediaQueryDivider.mobileL}px) {
+      margin: 0;
+      text-align: center;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      display: block;
+      height: 2px;
+      width: 100%;
+      background-color: #fff;
+      opacity: .7;
+      transform: scale(0, 1);
+      transform-origin: center left;
+      transition: all 300ms ease-out;
+    }
+
+    :hover::after {
+      transform: scale(1, 1);
+    }
+  }
+`
+
+const Home = ({ data, location }) => {
+  const navs = data.markdownRemark?.frontmatter?.navs || []
+
+  const clientWidth = useMediaQuery()
+  const maybeMobile = clientWidth < mediaQueryDivider.tablet
+
+  return (
+    <>
+      <HomeStyle />
+      <Layout>
+        <Background src={Image_HomeBackground} />
+        <Main>
+          <Title>Young{maybeMobile ? '\n' : ''}chaos</Title>
+          <Nav>
+            {navs.map(item => (
+              <Link key={item.name} to={item.link}><span>{ item.name }</span></Link>
+            ))}
+          </Nav>
+        </Main>
+      </Layout>
+    </>
   )
 }
 
-export default BlogIndex
+export default Home
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
+    markdownRemark(
+      frontmatter: {
+        title: { eq: "__Nav__" }
       }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        excerpt
-        fields {
-          slug
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
-          title
-          description
+    ) {
+      frontmatter {
+        navs {
+          name
+          link
         }
       }
     }
