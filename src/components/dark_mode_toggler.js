@@ -41,7 +41,7 @@ const IconWrapper = styled.div`
 `
 
 export const DarkModeToggler = () => {
-  const [mode, setMode] = useState(window.__theme)
+  const [mode, setMode] = useState()
 
   function handleChange() {
     window.__setPreferredTheme(window.__theme === 'light' ? 'dark' : 'light')
@@ -49,6 +49,8 @@ export const DarkModeToggler = () => {
 
   useEffect(() => {
     window.onThemeChange = newTheme => setMode(newTheme)
+
+    setMode(window.__theme)
 
     return () => window.onThemeChange = () => {}
   }, [])
