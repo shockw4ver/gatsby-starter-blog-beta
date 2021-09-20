@@ -26,7 +26,6 @@
     "gatsby-remark-responsive-iframe": "^5.0.0-zz-next.1",
     "gatsby-remark-smartypants": "^5.0.0-zz-next.1",
     "gatsby-source-filesystem": "^4.0.0-zz-next.1",
-    "gatsby-source-firebase": "^1.0.0",
     "gatsby-transformer-remark": "^5.0.0-zz-next.1",
     "gatsby-transformer-sharp": "^4.0.0-zz-next.1",
     "gsap": "^3.7.1",
