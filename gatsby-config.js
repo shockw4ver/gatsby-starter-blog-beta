@@ -3,7 +3,7 @@ module.exports = {
     title: `It's Youngchaos`,
     author: {
       name: `Zhang Yongchao`,
-      summary: `Learning.Thinking.Creating`,
+      summary: `Learning then Thinking for Creating`,
     },
     description: `未经审视的生活是不值得过的`,
     siteUrl: `https://youngchaos.art`,
@@ -47,7 +47,12 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          `gatsby-remark-prismjs`,
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              inlineCodeMarker: '+'
+            }
+          },
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],
@@ -116,18 +121,24 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Youngchaos`,
+        short_name: `YC`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-react-helmet`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-source-firebase',
+      options: {
+        credentials: './config/firebase.json'
+      }
+    }
   ],
 }
