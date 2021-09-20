@@ -8,4 +8,4 @@ import "./src/style.css"
 
 import './src/root.css'
 
-import './src/firebase'
+// import './src/firebase'
