@@ -4,7 +4,7 @@ import {
   createContext
 } from 'react'
 
-export const themeContext = createContext(window.__theme)
+export const themeContext = createContext('light')
 
 export function useTheme() {
   const [theme, setTheme] = useState()
