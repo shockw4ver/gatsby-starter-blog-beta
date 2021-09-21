@@ -70,6 +70,7 @@ const Title = styled.h1`
   cursor: none;
   user-select: none;
   transition: all 300ms;
+  transition: text-shadow 100ms;
 
   @media only screen and (max-width: ${mediaQueryDivider.mobileL}px) {
     text-align: center;
@@ -99,6 +100,7 @@ const Nav = styled.div`
     line-height: 30px;
     box-sizing: border-box;
     cursor: pointer;
+    user-select: none;
 
     @media only screen and (max-width: ${mediaQueryDivider.mobileL}px) {
       margin: 0;

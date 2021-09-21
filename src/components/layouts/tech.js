@@ -1,11 +1,19 @@
-import React, { useEffect } from "react"
+import React from "react"
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import styled from "styled-components"
+import { useGoBackWithAni } from '../../hooks/useGoBackWithAni'
 import { DarkModeToggler } from '../dark_mode_toggler'
 import { InjectOverreactedio } from '../overreactedio'
 import { themeContext, useTheme } from '../../hooks/useTheme'
+import { Gear } from '../gear'
 
 const DarkModeTogglerPin = styled.div`
+  position: absolute;
+  top: 30px;
+  right: 30px;
+`
+
+const GearPin = styled.div`
   position: absolute;
   top: 30px;
   right: 30px;
@@ -28,26 +36,19 @@ const Layout = ({ location, title, children }) => {
     </AniLink>
   )
 
-  useEffect(() => {
-    window.history.pushState({}, 'hack')
-
-    const hackGoBack = () => {
-      document.querySelector('.header-link-home').click()
-    }
-
-    window.addEventListener('popstate', hackGoBack)
-
-    return () => window.removeEventListener('popstate', hackGoBack)
-  }, [])
+  useGoBackWithAni('.header-link-home')
 
   return (
     <>
       <InjectOverreactedio />
       <themeContext.Provider value={theme}>
         <div className="global-wrapper" data-is-root-path={isRootPath}>
-          <DarkModeTogglerPin>
+          {/* <DarkModeTogglerPin>
             <DarkModeToggler onChange={switchTheme} />
-          </DarkModeTogglerPin>
+          </DarkModeTogglerPin> */}
+          <GearPin>
+            <Gear />
+          </GearPin>
           <header className="global-header">
             {header}
           </header>
