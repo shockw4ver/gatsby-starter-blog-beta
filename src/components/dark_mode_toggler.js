@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import ReactToggler from 'react-toggle'
 import 'react-toggle/style.css'
+
+import { themeContext } from '../hooks/useTheme'
 
 const RewriteReactTogglerStyle = styled.div`
   .rewrite-react-toggle-style {
@@ -40,32 +42,22 @@ const IconWrapper = styled.div`
   line-height: 10px;
 `
 
-export const DarkModeToggler = () => {
-  const [mode, setMode] = useState()
-
-  function handleChange() {
-    window.__setPreferredTheme(window.__theme === 'light' ? 'dark' : 'light')
-  }
-
-  useEffect(() => {
-    window.onThemeChange = newTheme => setMode(newTheme)
-
-    setMode(window.__theme)
-
-    return () => window.onThemeChange = () => {}
-  }, [])
-
+export const DarkModeToggler = ({ onChange }) => {
   return (
-    <RewriteReactTogglerStyle>
-      <ReactToggler
-        defaultChecked={mode === 'dark'}
-        className="rewrite-react-toggle-style"
-        onChange={handleChange}
-        icons={{
-          checked: <IconWrapper>夜</IconWrapper>,
-          unchecked: <IconWrapper style={{color: '#fff'}}>日</IconWrapper>
-        }}
-      />
-    </RewriteReactTogglerStyle>
+    <themeContext.Consumer>
+      {theme => (
+        <RewriteReactTogglerStyle>
+          <ReactToggler
+            defaultChecked={theme === 'dark'}
+            className="rewrite-react-toggle-style"
+            onChange={onChange}
+            icons={{
+              checked: <IconWrapper>夜</IconWrapper>,
+              unchecked: <IconWrapper style={{color: '#fff'}}>日</IconWrapper>
+            }}
+          />
+        </RewriteReactTogglerStyle>
+      )}
+    </themeContext.Consumer>
   )
 }
