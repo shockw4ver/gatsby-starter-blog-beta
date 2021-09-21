@@ -130,6 +130,13 @@ module.exports = {
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
+    // this plugin must be listed after `gatsby-pluign-manifest` so manifest will be found
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/tech`, `/music`]
+      }
+    },
     `gatsby-plugin-react-helmet`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

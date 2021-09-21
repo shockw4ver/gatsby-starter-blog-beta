@@ -5680,6 +5680,22 @@ gatsby-cli@^4.0.0-zz-next.1:
     yoga-layout-prebuilt "^1.9.6"
     yurnalist "^2.1.0"
 
+gatsby-core-utils@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.nlark.com/gatsby-core-utils/download/gatsby-core-utils-2.14.0.tgz#ad0030d11776073cdc6a119f4b81e150f3921aef"
+  integrity sha1-rQAw0Rd2BzzcahGfS4HhUPOSGu8=
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+    ci-info "2.0.0"
+    configstore "^5.0.1"
+    file-type "^16.5.3"
+    fs-extra "^10.0.0"
+    got "^11.8.2"
+    node-object-hash "^2.3.9"
+    proper-lockfile "^4.1.2"
+    tmp "^0.2.1"
+    xdg-basedir "^4.0.0"
+
 gatsby-core-utils@^3.0.0-zz-next.1:
   version "3.0.0-zz-next.1"
   resolved "https://registry.npmjs.org/gatsby-core-utils/-/gatsby-core-utils-3.0.0-zz-next.1.tgz"
@@ -5775,25 +5791,25 @@ gatsby-plugin-image@^2.0.0-zz-next.1:
     objectFitPolyfill "^2.3.5"
     prop-types "^15.7.2"
 
-gatsby-plugin-manifest@^4.0.0-zz-next.1:
-  version "4.0.0-zz-next.1"
-  resolved "https://registry.npmjs.org/gatsby-plugin-manifest/-/gatsby-plugin-manifest-4.0.0-zz-next.1.tgz"
-  integrity sha512-fQRrQsOB6GHCTcR659O+1xV4MMabnGiNElz40wCodfaax5O6Q64mMjoW4oPxJWLyFHvLDgoDA2Pgc346m6b7nw==
+gatsby-plugin-manifest@^3.14.0:
+  version "3.14.0"
+  resolved "https://registry.nlark.com/gatsby-plugin-manifest/download/gatsby-plugin-manifest-3.14.0.tgz#1f17e35f2e51b86f627d74a6fd6ccfefc4968ddd"
+  integrity sha1-HxfjXy5RuG9ifXSm/WzP78SWjd0=
   dependencies:
     "@babel/runtime" "^7.15.4"
-    gatsby-core-utils "^3.0.0-zz-next.1"
-    gatsby-plugin-utils "^2.0.0-zz-next.1"
+    gatsby-core-utils "^2.14.0"
+    gatsby-plugin-utils "^1.14.0"
     semver "^7.3.5"
     sharp "^0.29.0"
 
-gatsby-plugin-offline@^5.0.0-zz-next.1:
-  version "5.0.0-zz-next.1"
-  resolved "https://registry.npmjs.org/gatsby-plugin-offline/-/gatsby-plugin-offline-5.0.0-zz-next.1.tgz"
-  integrity sha512-zmVaycj5pRAmkx0P4B9vn8v5JWOPnHex86Y+mL32ColYMOiNresLMS5YdUNZNEkpMmVBOFUFVadWBQbYwc+qPw==
+gatsby-plugin-offline@^4.14.0:
+  version "4.14.0"
+  resolved "https://registry.nlark.com/gatsby-plugin-offline/download/gatsby-plugin-offline-4.14.0.tgz#df2e6f17184a58e66a3ae693855dd91601479ffb"
+  integrity sha1-3y5vFxhKWOZqOuaThV3ZFgFHn/s=
   dependencies:
     "@babel/runtime" "^7.15.4"
     cheerio "^1.0.0-rc.10"
-    gatsby-core-utils "^3.0.0-zz-next.1"
+    gatsby-core-utils "^2.14.0"
     glob "^7.1.7"
     idb-keyval "^3.2.0"
     lodash "^4.17.21"
@@ -5880,6 +5896,14 @@ gatsby-plugin-typescript@^4.0.0-zz-next.1:
     "@babel/preset-typescript" "^7.15.0"
     "@babel/runtime" "^7.15.4"
     babel-plugin-remove-graphql-queries "^4.0.0-zz-next.1"
+
+gatsby-plugin-utils@^1.14.0:
+  version "1.14.0"
+  resolved "https://registry.nlark.com/gatsby-plugin-utils/download/gatsby-plugin-utils-1.14.0.tgz#7813ce967a0bc2fd89560706db879fbf5b894795"
+  integrity sha1-eBPOlnoLwv2JVgcG24efv1uJR5U=
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+    joi "^17.4.2"
 
 gatsby-plugin-utils@^2.0.0-zz-next.1:
   version "2.0.0-zz-next.8"
